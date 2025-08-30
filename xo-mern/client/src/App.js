@@ -1,43 +1,22 @@
-import { useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Dashboard from "./pages/Dashboard";
+import QA from "./pages/QA";
+import SEO from "./pages/SEO";
+import Internship from "./pages/Internship";
 
-function App() {
-  const [health, setHealth] = useState(null);
-  const [time, setTime] = useState(null);
-
-  useEffect(() => {
-    fetch("http://localhost:5000/health")
-      .then(res => res.json())
-      .then(setHealth)
-      .catch(console.error);
-  }, []);
-
-   useEffect(() => {
-    fetch("http://localhost:5000/time")
-      .then(res => res.json())
-      .then(setTime)
-      .catch(console.error);
-  }, []);
-
-  useEffect(() => {
-  fetch("http://localhost:5000/echo", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ msg: "hi" })
-  })
-    .then(r => r.json())
-    .then(data => console.log("echo:", data))
-    .catch(console.error);
-}, []);
-
-
+export default function App() {
   return (
-    <div>
-      <h1>XO Frontend</h1>
-      <pre>{health ? JSON.stringify(health, null, 2) : "Loading..."}</pre>
-      <pre>{time ? JSON.stringify(time, null, 2) : "Loading..."}</pre>
-
-    </div>
+    <BrowserRouter>
+      <Navbar />
+      <main style={{ padding: "1rem" }}>
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/qa" element={<QA />} />
+          <Route path="/seo" element={<SEO />} />
+          <Route path="/internship" element={<Internship />} />
+        </Routes>
+      </main>
+    </BrowserRouter>
   );
 }
-
-export default App;
