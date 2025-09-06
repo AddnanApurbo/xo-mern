@@ -1,0 +1,4 @@
+[
+  { "id": 1, "topic": "MERN", "prompt": "What is MERN?", "answer": "MongoDB, Express, React, Node" },
+  { "id": 2, "topic": "DSA", "prompt": "What is a linked list?", "answer": "A linear collection of nodes using pointers." }
+]

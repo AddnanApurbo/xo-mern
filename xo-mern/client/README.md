@@ -1,70 +1,103 @@
-# Getting Started with Create React App
+Project XO (MERN)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a full-stack web app built with the MERN stack (MongoDB,
+Express, React, Node). It is designed as an SEO + Internship prep hub.
 
-## Available Scripts
+Available Scripts
 
-In the project directory, you can run:
+In the project root directory, you can run:
 
-### `npm start`
+npm run dev
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Runs both the server (Express backend) and client (React frontend)
+concurrently.
+- Backend runs on http://localhost:5000
+- Frontend runs on http://localhost:3000
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The pages will reload when you make changes.
+Server restarts automatically if you’re using nodemon.
 
-### `npm test`
+------------------------------------------------------------------------
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+npm run client
 
-### `npm run build`
+Runs only the React client in development mode.
+Open http://localhost:3000 to view it in your browser.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The page will reload when you make changes, and you may also see lint
+errors in the console.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+------------------------------------------------------------------------
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+npm run server
 
-### `npm run eject`
+Runs only the Express server in development mode.
+Server is available on http://localhost:5000.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Use this if you want to test API endpoints without starting the React
+client.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+------------------------------------------------------------------------
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+npm test
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Currently not configured. You can add test runners (Jest, Mocha, etc.)
+as needed.
 
-## Learn More
+------------------------------------------------------------------------
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Project Structure
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    xo-mern/
+      client/      # React frontend
+        src/
+          components/   # Reusable UI components (Navbar, etc.)
+          pages/        # Route-level pages (Dashboard, QA, SEO, Internship)
+          App.js        # Router + layout
+          index.js      # Entry point
+      server/      # Express backend
+        data/           # Mock JSON data (questions, keywords, checklist)
+        index.js        # Server entry with routes and middleware
+      package.json  # Root scripts (concurrently)
 
-### Code Splitting
+------------------------------------------------------------------------
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Features
 
-### Analyzing the Bundle Size
+-   Dashboard – quick summary
+-   Q&A – MERN + DSA practice questions (fetched from backend)
+-   SEO Tools – keywords table + interactive checklist
+-   Internship – intro script + story bank
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+------------------------------------------------------------------------
 
-### Making a Progressive Web App
+Learn More
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+-   React documentation
+-   Express documentation
+-   Node.js documentation
+-   Concurrently package
 
-### Advanced Configuration
+------------------------------------------------------------------------
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Deployment
 
-### Deployment
+To deploy in production:
+1. Build the client: bash    cd client    npm run build This outputs a
+static bundle to client/build/.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+2.  Configure the server to serve the React build in production (e.g.,
+    using express.static).
 
-### `npm run build` fails to minify
+------------------------------------------------------------------------
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Troubleshooting
+
+-   npm run dev doesn’t start?
+    -   Ensure concurrently is installed (npm install).
+    -   Ensure both client/ and server/ have their dependencies
+        installed (npm install inside each).
+-   CORS issues?
+    -   In dev, CRA proxy handles this ("proxy": "http://localhost:5000"
+        in client/package.json).
+    -   In production, serve client and server under the same origin.
